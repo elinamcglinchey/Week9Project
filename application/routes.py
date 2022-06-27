@@ -6,11 +6,7 @@ from flask import redirect, url_for, render_template, request
 @app.route('/')
 def index():
     todo = Meals.query.all()
-    # empstr = ""
-    # for t in todo:
-    #     empstr += f'{t.id} {t.task}  {t.completed} <br>' 
-    # return empstr
-    return render_template("task.html", meals=meal)
+    return render_template("food.html", meals=meal)
 
 @app.route('/about')
 def about():
@@ -29,7 +25,7 @@ def add():
             db.session.add(foodData)
             db.session.commit()
             return redirect(url_for('index'))
-    return render_template('addtask.html', form=form)
+    return render_template('addfood.html', form=form)
 
 @app.route('/complete/<int:id>')
 def complete(id):

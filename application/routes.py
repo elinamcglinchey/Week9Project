@@ -1,6 +1,6 @@
 from application import app, db
 from application.models import Meals
-from application.forms import Foodform
+from application.forms import Foodform, Customerform
 from flask import redirect, url_for, render_template, request
 
 @app.route('/')

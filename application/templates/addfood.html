@@ -5,7 +5,9 @@
 
     <form method="POST", action="">
         {{ form.hidden_tag() }}
-        {{ form.food.label }} {{ form.food }}
+        {{ form.task.label }} {{ form.food }}
+        <br>
+        {{ form.completed.label }} {{ form.completed }}
         <br>
         {{ form.submit }}
     </form>

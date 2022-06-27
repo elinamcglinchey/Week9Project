@@ -1,11 +1,11 @@
 from application import app, db
 from application.models import Meals
-from application.forms import FoodForm
+from application.forms import Foodform
 from flask import redirect, url_for, render_template, request
 
 @app.route('/')
 def index():
-    todo = Meals.query.all()
+    meal = Meals.query.all()
     return render_template("food.html", meals=meal)
 
 @app.route('/about')

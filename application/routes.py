@@ -1,6 +1,6 @@
 from application import app, db
 from application.models import Meals
-from application.forms import TaskForm
+from application.forms import FoodForm
 from flask import redirect, url_for, render_template, request
 
 @app.route('/')
@@ -10,7 +10,7 @@ def index():
     # for t in todo:
     #     empstr += f'{t.id} {t.task}  {t.completed} <br>' 
     # return empstr
-    return render_template("task.html", todos=meal)
+    return render_template("task.html", meals=meal)
 
 @app.route('/about')
 def about():
@@ -19,14 +19,14 @@ def about():
 
 @app.route('/add', methods=['GET','POST'])
 def add():
-    form = TaskForm()
+    form = FoodForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            taskData = Meals(
-                task = form.task.data,
+            foodData = Meals(
+                food = form.food.data,
                 completed = form.completed.data
             )
-            db.session.add(taskData)
+            db.session.add(foodData)
             db.session.commit()
             return redirect(url_for('index'))
     return render_template('addtask.html', form=form)
@@ -47,19 +47,19 @@ def incomplete(id):
 
 @app.route('/update/<int:id>', methods= ['GET', 'POST'])
 def update(id):
-    form = TaskForm()
+    form = FoodForm()
     meal = Meals.query.get(id)
     if form.validate_on_submit():
-        meal.task = form.task.data
+        meal.food = form.food.data
         db.session.commit()
         return redirect(url_for('index'))
     elif request.method == 'GET':
-        form.task.data = meal.task
+        form.food.data = meal.food
     return render_template('update.html', form=form)
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    todo = Meals.query.get(id)
+    meal = Meals.query.get(id)
     db.session.delete(meal)
     db.session.commit()
     return redirect(url_for('index'))

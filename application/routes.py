@@ -1,9 +1,13 @@
 from application import app, db
-from application.models import Customers
+from application.models import Memberships
 from application.forms import CustomerForm 
 from flask import redirect, url_for, render_template, request
 
 @app.route('/')
+def home():
+    return render_template("home.html")
+
+@app.route('/index')
 def index():
     membership = Memberships.query.all()
     return render_template("customer.html", memberships=membership)
@@ -18,25 +22,32 @@ def add():
     if request.method == 'POST':
         if form.validate_on_submit():
             customerData = Memberships(
-                customer = form.customer.data,
-                completed = form.completed.data
+                userName = form.customer.data,
+                firstName = form.customer.data,
+                lastName = form.customer.data,
+                primeMembership = form.customer.data
             )
             db.session.add(customerData)
             db.session.commit()
             return redirect(url_for('index'))
     return render_template('addcustomer.html', form=form)
 
-@app.route('/complete/<int:id>')
-def complete(id):
+@app.route('/customerindex')
+def customerindex():
+    customers = Memberships.query.all()
+    return render_template("listofcustomers.html")
+
+@app.route('/active/<int:id>')
+def active(id):
     membership = Memberships.query.get(id)
-    membership.completed = True
+    membership.active = True
     db.session.commit()
     return redirect(url_for('index'))
 
-@app.route('/incomplete/<int:id>')
-def incomplete(id):
+@app.route('/inactive/<int:id>')
+def inactive(id):
     membership = Memberships.query.get(id)
-    membership.completed = False
+    membership.active = False
     db.session.commit()
     return redirect(url_for('index'))
 
@@ -44,12 +55,20 @@ def incomplete(id):
 def update(id):
     form = CustomerForm()
     membership = Memberships.query.get(id)
-    if form.validate_on_submit():
-        membership.food = form.customer.data
+    Customer = Memberships.query.all()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            membership.firstName = form.firstName.data
+            membership.lastName = form.lastName.data
+            membership.username = form.username.data
+        # membership.customer = form.customer.data
+        
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('customerindex'))
     elif request.method == 'GET':
-        form.customer.data = membership.customer
+        form.firstName.data = membership.firstName
+        form.lastName.data = membership.lastName
+        form.username.data = membership.username
     return render_template('update.html', form=form)
 
 @app.route('/delete/<int:id>')

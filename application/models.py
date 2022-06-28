@@ -1,6 +1,6 @@
 from application import db
 
-class Customers(db.Model):
+class Memberships(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userName = db.Column(db.String(30))
     firstName = db.Column(db.String(30),nullable = True)

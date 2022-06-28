@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+<br>
+{% for membership in memberships %}
+<p>Customer: {{ membership.customer }} </p>
+<p>Completed: {{ membership.completed }}</p>
+<form action="{{ url_for('delete', id=membership.id) }}">
+<button type="Submit">Delete Customer</button>
+</form>
+<form action="{{ url_for('complete', id=membership.id) }}">
+<button type="Submit">Complete Customer</button>
+</form>
+<form action="{{ url_for('incomplete', id=membership.id) }}">
+<button type="Submit">Incomplete Customer</button>
+</form>
+<form action="{{ url_for('update', id=membership.id) }}">
+<button type="Submit">Update Customer</button>
+</form>
+{% endfor %}
+{% endblock body %}

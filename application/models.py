@@ -1,6 +1,9 @@
 from application import db
 
-class Meals(db.Model):
+class Customers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    food = db.Column(db.String(30))
-    completed = db.Column(db.Boolean, default=False)
+    userName = db.Column(db.String(30))
+    firstName = db.Column(db.String(30),nullable = True)
+    lastName = db.Column(db.String(30),nullable = True)
+    primeMembership = db.Column(db.Boolean, default=False)
+    

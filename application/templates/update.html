@@ -1,11 +1,14 @@
 {% extends "layout.html" %}
+<head>
+    <title> Update Customer info </title>
+</head>
 {% block body %}
 
 <div class="form">
 
     <form method="POST", action="">
         {{ form.hidden_tag() }}
-        {{ form.food.label }} {{ form.food }}
+        {{ form.customer.label }} {{ form.customer }}
         <br>
         {{ form.submit }}
     </form>

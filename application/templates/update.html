@@ -8,7 +8,11 @@
 
     <form method="POST", action="">
         {{ form.hidden_tag() }}
-        {{ form.customer.label }} {{ form.customer }}
+        {{ form.firstName.label }} {{ form.firstName }}
+        <br>
+        {{ form.lastName.label }} {{ form.lastName }}
+        <br>
+        {{ form.userName.label }} {{ form.userName }}
         <br>
         {{ form.submit }}
     </form>

@@ -22,10 +22,10 @@ def add():
     if request.method == 'POST':
         if form.validate_on_submit():
             customerData = Memberships(
-                userName = form.customer.data,
-                firstName = form.customer.data,
-                lastName = form.customer.data,
-                primeMembership = form.customer.data
+                userName = form.userName.data,
+                firstName = form.firstName.data,
+                lastName = form.lastName.data,
+                primeMembership = form.primeMembership.data
             )
             db.session.add(customerData)
             db.session.commit()
@@ -34,8 +34,8 @@ def add():
 
 @app.route('/customerindex')
 def customerindex():
-    customers = Memberships.query.all()
-    return render_template("listofcustomers.html")
+    membership = Memberships.query.all()
+    return render_template("listofcustomers.html", memberships=membership)
 
 @app.route('/active/<int:id>')
 def active(id):
@@ -60,7 +60,7 @@ def update(id):
         if form.validate_on_submit():
             membership.firstName = form.firstName.data
             membership.lastName = form.lastName.data
-            membership.username = form.username.data
+            membership.userName = form.userName.data
         # membership.customer = form.customer.data
         
         db.session.commit()
@@ -68,7 +68,7 @@ def update(id):
     elif request.method == 'GET':
         form.firstName.data = membership.firstName
         form.lastName.data = membership.lastName
-        form.username.data = membership.username
+        form.userName.data = membership.userName
     return render_template('update.html', form=form)
 
 @app.route('/delete/<int:id>')

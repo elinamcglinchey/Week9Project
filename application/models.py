@@ -6,4 +6,17 @@ class Memberships(db.Model):
     firstName = db.Column(db.String(30),nullable = True)
     lastName = db.Column(db.String(30),nullable = True)
     primeMembership = db.Column(db.Boolean, default=False)
+    mealPlans = db.relationship('MealPlans', backref='membership')
+
+class MealPlans(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    recipeName = db.Column(db.String(30), nullable=False)
+    meat = db.Column(db.Boolean, nullable=False)
+    vegetarian = db.Column(db.Boolean, nullable=False)
+    vegan = db.Column(db.Boolean, nullable=False)
+    calories = db.Column(Integer, nullable=False)
+    nut allergy = db.Column(db.Boolean, nullable=False)
+    other allergy = db.Column(db.String(30), nullable=False)
+    membership_id = db.Column(db.Integer, db.ForeignKey('memberships.id'), nullable=False)
+
     

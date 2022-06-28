@@ -1,5 +1,5 @@
 from application import db
-from application.models import Memberships
+from application.models import Memberships, MealPlans
 
 db.drop_all()
 db.create_all()
@@ -10,4 +10,18 @@ sample_membership = Memberships(
     primeMembership = False
 )
 db.session.add(sample_membership)
+db.session.commit()
+
+db.drop_all()
+db.create_all()
+sample_mealplan = Memberships(
+    recipeName = "Sample recipe name",
+    meat = True,
+    vegetarian = False,
+    vegan = False,
+    calories = 500,
+    nutAllergy = True,
+    otherAllergy = "N/A"
+)
+db.session.add(sample_mealplan)
 db.session.commit()

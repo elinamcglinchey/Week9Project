@@ -1,5 +1,7 @@
+pytest
+pytest-cov
 flask
 flask_sqlalchemy
 pymysql
 flask_wtf
-wtforms
+flask_testing

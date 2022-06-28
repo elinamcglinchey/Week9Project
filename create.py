@@ -10,6 +10,8 @@ sample_membership = Memberships(
     lastName = "Sample lastname",
     primeMembership = False
 )
+db.session.add(sample_membership)
+db.session.commit()
 
 sample_mealplan = MealPlans(
     recipeName = "Sample recipe name",
@@ -20,6 +22,5 @@ sample_mealplan = MealPlans(
     nutAllergy = True,
     otherAllergy = "N/A"
 )
-db.session.add(sample_membership)
 db.session.add(sample_mealplan)
 db.session.commit()

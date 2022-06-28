@@ -47,7 +47,7 @@ def addmeal():
             )
             db.session.add(recipeNameData)
             db.session.commit()
-            return redirect(url_for('index'))
+            return redirect(url_for('customerindex'))
     return render_template('addmeals.html', form=form)
 
 

@@ -1,6 +1,6 @@
 from application import app, db
-from application.models import Memberships
-from application.forms import CustomerForm 
+from application.models import Memberships, MealPlans
+from application.forms import CustomerForm, MealsForm 
 from flask import redirect, url_for, render_template, request
 
 @app.route('/')
@@ -22,15 +22,35 @@ def add():
     if request.method == 'POST':
         if form.validate_on_submit():
             customerData = Memberships(
-                userName = form.userName.data,
                 firstName = form.firstName.data,
                 lastName = form.lastName.data,
+                userName = form.userName.data,
                 primeMembership = form.primeMembership.data
             )
             db.session.add(customerData)
             db.session.commit()
             return redirect(url_for('index'))
     return render_template('addcustomer.html', form=form)
+
+@app.route('/addmeal', methods=['GET','POST'])
+def addmeal():
+    form = MealsForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            recipeNameData = MealPlans(
+                meat = form.meat.data,
+                vegetarian = form.vegetarian.data,
+                vegan = form.vegan.data,
+                calories = form.calories.data,
+                nutAllergy = form.nutAllergy.data,
+                otherAllergy = form.otherAllergy.data
+            )
+            db.session.add(recipeNameData)
+            db.session.commit()
+            return redirect(url_for('index'))
+    return render_template('addmeals.html', form=form)
+
+
 
 @app.route('/customerindex')
 def customerindex():
@@ -70,6 +90,8 @@ def update(id):
         form.lastName.data = membership.lastName
         form.userName.data = membership.userName
     return render_template('update.html', form=form)
+
+
 
 @app.route('/delete/<int:id>')
 def delete(id):

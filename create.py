@@ -3,18 +3,15 @@ from application.models import Memberships, MealPlans
 
 db.drop_all()
 db.create_all()
+
 sample_membership = Memberships(
     userName = "Sample username",
     firstName = "Sample firstname",
     lastName = "Sample lastname",
     primeMembership = False
 )
-db.session.add(sample_membership)
-db.session.commit()
 
-db.drop_all()
-db.create_all()
-sample_mealplan = Memberships(
+sample_mealplan = MealPlans(
     recipeName = "Sample recipe name",
     meat = True,
     vegetarian = False,
@@ -23,5 +20,6 @@ sample_mealplan = Memberships(
     nutAllergy = True,
     otherAllergy = "N/A"
 )
+db.session.add(sample_membership)
 db.session.add(sample_mealplan)
 db.session.commit()

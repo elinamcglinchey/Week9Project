@@ -14,9 +14,10 @@ class MealPlans(db.Model):
     meat = db.Column(db.Boolean, nullable=False)
     vegetarian = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
-    calories = db.Column(Integer, nullable=False)
-    nut allergy = db.Column(db.Boolean, nullable=False)
-    other allergy = db.Column(db.String(30), nullable=False)
+    calories = db.Column(db.Integer, nullable=False)
+    nutAllergy = db.Column(db.Boolean, nullable=False)
+    otherAllergy = db.Column(db.String(30), nullable=False)
     membership_id = db.Column(db.Integer, db.ForeignKey('memberships.id'), nullable=False)
+
 
     

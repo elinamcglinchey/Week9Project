@@ -9,3 +9,12 @@ class CustomerForm(FlaskForm):
    password = StringField("Password")
    primeMembership = BooleanField("Prime Membership")
    submit= SubmitField("Submit")
+
+class MealsForm(FlaskForm):
+   recipeName = StringField("Recipe Name")
+   meat = BooleanField("Meat eater")
+   vegetarian = BooleanField("Vegetarian")
+   vegan = BooleanField("Vegan")
+   calories = IntegerField("Number of calories per meal")
+   nutAllergy = BooleanField("Nut allergies")
+   otherAllergy = StringField("Any other known allergies")

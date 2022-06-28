@@ -2,6 +2,8 @@
 {% block body %}
 <br>
 {% for membership in memberships %}
+<p>First name: {{ membership.firstName }} </p>
+<p>Last name: {{ membership.lastName }} </p>
 <p>Username: {{ membership.userName }} </p>
 <p>Prime Membership: {{ membership.primeMembership }}</p>
 <form action="{{ url_for('delete', id=membership.id) }}">

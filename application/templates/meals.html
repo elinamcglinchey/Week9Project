@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+<br>
+{% for meal in meals %}
+<p>Recipe Name: {{ meal.recipeName }} </p>
+<p>Meat: {{ meal.meat }}</p>
+<p>Vegetarian: {{ meal.vegetarian }}</p>
+<p>Vegan: {{ meal.vegan }}</p>
+<p>Calories: {{ meal.calories }}</p>
+<p>Nut Allergy: {{ meal.nutAllergy }}</p>
+<p>Other Allergy: {{ meal.otherAllergy }}</p>
+<form action="{{ url_for('delete', id=meal.id) }}">
+<button type="Submit">Delete Recipe</button>
+</form>
+<form action="{{ url_for('active', id=meal.id) }}">
+<button type="Submit">Active Recipe</button>
+</form>
+<form action="{{ url_for('inactive', id=meal.id) }}">
+<button type="Submit">Inactive Recipe</button>
+</form>
+<form action="{{ url_for('update', id=meal.id) }}">
+<button type="Submit">Update Recipe</button>
+</form>
+{% endfor %}
+{% endblock body %}

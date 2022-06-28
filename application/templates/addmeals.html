@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+<head> 
+    <title> Add Meals </title>
+</head>
+{% block body %}
+<div class="form">
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+       <p>{{ form.recipeName.label }} {{ form.recipeName }}</p>
+        <br>
+        <p>{{ form.meat.label }} {{ form.meat }}</p>
+        <br>
+        <p>{{ form.vegetarian.label }} {{ form.vegetarian}}</p>
+        <br>
+        <p>{{ form.vegan.label }} {{ form.vegan }}</p>
+        <br>
+        <p>{{ form.calories.label }} {{ form.calories }}</p>
+        <br>
+        <p>{{ form.nutAllergy.label }} {{ form.nutAllergy }}</p>
+        <br>
+        <p>{{ form.otherAllergy.label }} {{ form.otherAllergy }}</p>
+        <br>
+        {{ form.submit }}
+        <br>
+        <p>{{error}}</p>
+    </form>
+</div>
+
+{% endblock body %}

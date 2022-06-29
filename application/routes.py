@@ -58,7 +58,6 @@ def addmeal():
     return render_template('addmeals.html', form=form)
 
 
-
 @app.route('/customerindex')
 def customerindex():
     membership = Memberships.query.all()
@@ -91,13 +90,41 @@ def update(id):
         # membership.customer = form.customer.data
         
         db.session.commit()
-        return redirect(url_for('customerindex'))
+        return redirect(url_for('index'))
     elif request.method == 'GET':
         form.firstName.data = membership.firstName
         form.lastName.data = membership.lastName
         form.userName.data = membership.userName
     return render_template('update.html', form=form)
 
+@app.route('/updatemeal/<int:id>', methods= ['GET', 'POST'])
+def updatemeal(id):
+    form = MealsForm()
+    meal= MealPlans.query.get(id)
+    Recipe = MealPlans.query.all()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            meal.recipeName = form.recipeName.data
+            meal.meat = form.meat.data
+            meal.vegetarian = form.vegetarian.data
+            meal.vegan = form.vegan.data
+            meal.calories = form.calories.data
+            meal.nutAllergy = form.nutAllergy.data
+            meal.otherAllergy = form.otherAllergy.data
+            #meal.membership_id = form.membership_id.data
+        
+        db.session.commit()
+        return redirect(url_for('mealindex'))
+    elif request.method == 'GET':
+        form.recipeName.data = meal.recipeName
+        form.meat.data = meal.meat
+        form.vegetarian.data = meal.vegetarian
+        form.vegan.data = meal.vegan
+        form.calories.data = meal.calories
+        form.nutAllergy.data = meal.nutAllergy
+        form.otherAllergy.data = meal.otherAllergy
+        form.membership_id = meal.membership_id
+    return render_template('updatemeal.html', meal=meal, form=form)
 
 
 @app.route('/delete/<int:id>')
@@ -106,3 +133,10 @@ def delete(id):
     db.session.delete(membership)
     db.session.commit()
     return redirect(url_for('index'))
+
+@app.route('/deletemeal/<int:id>')
+def deletemeal(id):
+    meal = MealPlans.query.get(id)
+    db.session.delete(meal)
+    db.session.commit()
+    return redirect(url_for('mealindex'))

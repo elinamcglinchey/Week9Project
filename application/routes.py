@@ -12,6 +12,11 @@ def index():
     membership = Memberships.query.all()
     return render_template("customer.html", memberships=membership)
 
+@app.route('/mealindex')
+def mealindex():
+    meal = MealPlans.query.all()
+    return render_template("meals.html", meals=meal)
+
 @app.route('/about')
 def about():
     return render_template("about.html")
@@ -38,16 +43,18 @@ def addmeal():
     if request.method == 'POST':
         if form.validate_on_submit():
             recipeNameData = MealPlans(
+                recipeName = form.recipeName.data,
                 meat = form.meat.data,
                 vegetarian = form.vegetarian.data,
                 vegan = form.vegan.data,
                 calories = form.calories.data,
                 nutAllergy = form.nutAllergy.data,
-                otherAllergy = form.otherAllergy.data
+                otherAllergy = form.otherAllergy.data,
+                membership_id= form.membership_id.data
             )
             db.session.add(recipeNameData)
             db.session.commit()
-            return redirect(url_for('customerindex'))
+            return redirect(url_for('index'))
     return render_template('addmeals.html', form=form)
 
 

@@ -20,7 +20,8 @@ sample_mealplan = MealPlans(
     vegan = False,
     calories = 500,
     nutAllergy = True,
-    otherAllergy = "N/A"
+    otherAllergy = "N/A",
+    membership_id = 1
 )
 db.session.add(sample_mealplan)
 db.session.commit()

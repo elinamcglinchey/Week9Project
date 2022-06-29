@@ -17,5 +17,6 @@ class MealsForm(FlaskForm):
    vegan = BooleanField("Vegan")
    calories = IntegerField("Number of calories per meal")
    nutAllergy = BooleanField("Nut allergies")
-   otherAllergy = StringField("Any other known allergies")
+   otherAllergy = StringField("Any other known allergies, if not please put N/A")
+   membership_id = IntegerField("Membership id")
    submit= SubmitField("Submit")

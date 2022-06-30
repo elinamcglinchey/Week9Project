@@ -90,7 +90,11 @@ class TestDeleteCustomer(TestBase):
     def test_delete_customer(self):
         response = self.client.get(
             url_for('delete', id=1),
-            data = dict(firstName = "Elina", lastName = "McGlinchey", userName = "elinamcglinchey", primeMembership = True)
+            data = dict(firstName = "Elina", 
+            lastName = "McGlinchey", 
+            userName = "elinamcglinchey", 
+            primeMembership = True, 
+            membership_id = 1)
         )
         assert len(Memberships.query.all()) == 0
         assert len(MealPlans.query.all()) == 0
@@ -99,9 +103,41 @@ class TestDeleteMeal(TestBase):
     def test_deletemeal_post(self):
         response = self.client.get(
             url_for('deletemeal',id=1),
-            data = dict(message="deleted meal" ,membership_id=1)
+            data = dict(recipeName="deleted meal" ,membership_id=1)
         )
         assert len(MealPlans.query.all()) == 0
 
 #Test update for customer and meal
 #Test add for customer and meal
+
+class TestAdd(TestBase):
+    def test_add(self):
+        response = self.client.post(
+            url_for('add'),
+            data = dict(firstName = "Elina",
+                lastName = "McGlinchey",
+                userName = "elinamcglinchey",
+                primeMembership = True,
+                membership_id = 1
+            )
+        )
+        assert Memberships.query.filter_by(firstName="Elina").first().id == 1
+
+
+class TestAddMeal(TestBase):
+    def test_add_meal(self):
+        response = self.client.post(
+            url_for('addmeal'),
+            data = dict(recipeName = "salad",
+            meat = True,
+            vegetarian = False,
+            vegan = False,
+            calories = 500,
+            nutAllergy = False,
+            otherAllergy = "soya",
+            membership_id = 1
+            )
+        )
+        
+        assert MealPlans.query.filter_by(recipeName="salad").first().id == 2
+

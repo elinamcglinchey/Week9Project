@@ -3,7 +3,7 @@ from application.models import Memberships, MealPlans
 from application.forms import CustomerForm, MealsForm 
 from flask import redirect, url_for, render_template, request
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template("home.html")
 

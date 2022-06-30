@@ -45,24 +45,24 @@ class TestViews(TestBase):
 
 
     def test_home_get(self):
-        response = self.client.get(url_for('/'))
+        response = self.client.get(url_for('home'))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Home', response.data)
 
     def test_index_get(self):
         response = self.client.get(url_for('index'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Index', response.data)
+        self.assertIn(b'Customers', response.data)
 
     def test_mealindex_get(self):
         response = self.client.get(url_for('mealindex'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Meal Index', response.data)
+        self.assertIn(b'Meal Plans', response.data)
     
     def test_about_get(self):
         response = self.client.get(url_for('about'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Welcome to your meal planner', response.data)
+        self.assertIn(b'About', response.data)
 
     def test_add_get(self):
         response = self.client.get(url_for('add'))
@@ -72,26 +72,18 @@ class TestViews(TestBase):
     def test_addmeal_get(self):
         response = self.client.get(url_for('addmeal'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Meal added', response.data)
+        self.assertIn(b'Add Meals', response.data)
 
     def test_update_get(self):
-        response = self.client.get(url_for('update'))
+        response = self.client.get(url_for('update', id=1))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Customer updated', response.data)
+        self.assertIn(b'Update Customer info', response.data)
 
     def test_updatemeal_get(self):
-        response = self.client.get(url_for('updatemeal'))
+        response = self.client.get(url_for('updatemeal', id=1))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Meal updated', response.data)
+        self.assertIn(b'Update your meals info', response.data)
 
-class TestDeleteMeal(TestBase):
-    def test_deletemeal_post(self):
-       
-        response = self.client.get(
-            url_for('deletemeal',id=1),
-            data = dict(message="deleted meal" ,membership_id=1)
-        )
-        assert len(MealPlans.query.all()) == 1
 
 class TestDeleteCustomer(TestBase):
     
@@ -101,6 +93,14 @@ class TestDeleteCustomer(TestBase):
             data = dict(firstName = "Elina", lastName = "McGlinchey", userName = "elinamcglinchey", primeMembership = True)
         )
         assert len(Memberships.query.all()) == 1
+        assert len(MealPlans.query.all()) == 1
+
+class TestDeleteMeal(TestBase):
+    def test_deletemeal_post(self):
+        response = self.client.get(
+            url_for('deletemeal',id=1),
+            data = dict(message="deleted meal" ,membership_id=1)
+        )
         assert len(MealPlans.query.all()) == 1
 
 #Test update for customer and meal

@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
+<h1>Meals in your plan.</h1>
+<p>These are the current recipes in your mealplan, delete or update specifications if required.</p>
 <br>
 {% for meal in meals %}
 <p>Recipe Name: {{ meal.recipeName }} </p>

@@ -74,17 +74,20 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Add Meals', response.data)
 
+    # Not currently working due to assertion error, keeping in for progress update
     def test_update_get(self):
         response = self.client.get(url_for('update', id=1))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Update Customer info', response.data)
 
+    # Not currently working due to assertion error, keeping in for progress update
     def test_updatemeal_get(self):
         response = self.client.get(url_for('updatemeal', id=1))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Update your meals info', response.data)
 
-
+# Not sure why TestDeleteCustomer isn't working
+# Error is 'sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed:....'
 class TestDeleteCustomer(TestBase):
     
     def test_delete_customer(self):
@@ -97,6 +100,20 @@ class TestDeleteCustomer(TestBase):
             membership_id = 1)
         )
         assert len(Memberships.query.all()) == 1
+
+# Also tried this method, did not work
+'''
+class TestDeleteCustomer(TestBase):
+    
+    def test_delete_customer(self):
+        response = self.client.get(
+            url_for('delete', id=1), follow_redirects = True
+        )
+        #assert len(Memberships.query.all()) == 1
+        self.assertEqual(response.status_code, 200)
+        assert len(Memberships.query.all()) == 0
+        assert len(MealPlans.query.all()) == 0
+'''
 
 class TestDeleteMeal(TestBase):
     def test_deletemeal(self):

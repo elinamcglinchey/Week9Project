@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
+<h1>Customers</h1>
+<p>This is a list of current customers in our database.</p>
 <br>
 {% for membership in memberships %}
 <p>First name: {{ membership.firstName }} </p>

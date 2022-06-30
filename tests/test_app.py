@@ -94,10 +94,9 @@ class TestDeleteCustomer(TestBase):
             lastName = "McGlinchey", 
             userName = "elinamcglinchey", 
             primeMembership = True, 
-            id = 1)
+            membership_id = 1)
         )
         assert len(Memberships.query.all()) == 1
-        assert len(MealPlans.query.all()) == 1
 
 class TestDeleteMeal(TestBase):
     def test_deletemeal(self):

@@ -97,7 +97,6 @@ class TestDeleteCustomer(TestBase):
             membership_id = 1)
         )
         assert len(Memberships.query.all()) == 0
-        assert len(MealPlans.query.all()) == 0
 
 class TestDeleteMeal(TestBase):
     def test_deletemeal_post(self):
@@ -141,3 +140,27 @@ class TestAddMeal(TestBase):
         
         assert MealPlans.query.filter_by(recipeName="salad").first().id == 2
 
+class TestUpdate(TestBase):
+    def test_update(self):
+        response = self.client.post(
+            url_for('update', id=1),
+            data = dict(firstName="Gaz", lastName = "Watkins", userName = "gazwatkins")
+        )
+        assert len(Memberships.query.all()) == 1
+        assert Memberships.query.filter_by(firstName="Gaz").first().id ==1
+
+class TestUpdateMeal(TestBase):
+    def test_updatemeal(self):
+        response = self.client.post(
+            url_for('updatemeal', id=1),
+            data = dict(recipeName = "chicken salad",
+            meat = True,
+            vegetarian = False,
+            vegan = False,
+            calories = 500,
+            nutAllergy = False,
+            otherAllergy = "sesame seeds",
+            membership_id = 1)
+        )
+        assert len(MealPlans.query.all()) == 1
+        assert MealPlans.query.filter_by(recipeName="chicken salad").first().id ==1

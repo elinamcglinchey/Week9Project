@@ -92,8 +92,8 @@ class TestDeleteCustomer(TestBase):
             url_for('delete', id=1),
             data = dict(firstName = "Elina", lastName = "McGlinchey", userName = "elinamcglinchey", primeMembership = True)
         )
-        assert len(Memberships.query.all()) == 1
-        assert len(MealPlans.query.all()) == 1
+        assert len(Memberships.query.all()) == 0
+        assert len(MealPlans.query.all()) == 0
 
 class TestDeleteMeal(TestBase):
     def test_deletemeal_post(self):
@@ -101,7 +101,7 @@ class TestDeleteMeal(TestBase):
             url_for('deletemeal',id=1),
             data = dict(message="deleted meal" ,membership_id=1)
         )
-        assert len(MealPlans.query.all()) == 1
+        assert len(MealPlans.query.all()) == 0
 
 #Test update for customer and meal
 #Test add for customer and meal

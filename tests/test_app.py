@@ -94,12 +94,13 @@ class TestDeleteCustomer(TestBase):
             lastName = "McGlinchey", 
             userName = "elinamcglinchey", 
             primeMembership = True, 
-            membership_id = 1)
+            id = 1)
         )
-        assert len(Memberships.query.all()) == 0
+        assert len(Memberships.query.all()) == 1
+        assert len(MealPlans.query.all()) == 1
 
 class TestDeleteMeal(TestBase):
-    def test_deletemeal_post(self):
+    def test_deletemeal(self):
         response = self.client.get(
             url_for('deletemeal',id=1),
             data = dict(recipeName="deleted meal" ,membership_id=1)

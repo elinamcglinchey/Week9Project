@@ -3,7 +3,7 @@ Description=Meal App
 
 [Service]
 User=jenkins
-WorkingDirectory=/home/jenkins/workspace/todo
+WorkingDirectory=/home/jenkins/.jenkins/workspace/Week9Project-Job
 Environment=DATABASE_URI=sqlite:///data.db
 Environment=SECRET_KEY=shhhhh
 ExecStart=/bin/sh \

@@ -73,6 +73,21 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Add Meals', response.data)
 
+    def test_customerindex_get(self):
+        response = self.client.get(url_for('customerindex'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'ListofCustomers', response.data)
+
+    def test_active_get(self):
+        response = self.client.get(url_for('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'active', response.data)
+
+    def test_inactive_get(self):
+        response = self.client.get(url_for('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'inactive', response.data)
+
     
     def test_update_get(self):
         response = self.client.get(url_for('update', id=1))
@@ -85,20 +100,23 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
         #self.assertIn(b'Update your meals info', response.data)
 
+    def test_deletemeal_get(self):
+        response = self.client.get(url_for('deletemeal', id=1))
+        self.assertEqual(response.status_code, 302)
+
+    def test_delete_get(self):
+        response = self.client.get(url_for('delete', id=1))
+        self.assertEqual(response.status_code, 302)
+
 # Not sure why TestDeleteCustomer isn't working
 # Error is 'sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed:....'
 class TestDeleteCustomer(TestBase):
     
     def test_delete_customer(self):
         response = self.client.get(
-            url_for('delete', id=1),
-            data = dict(firstName = "Elina", 
-            lastName = "McGlinchey", 
-            userName = "elinamcglinchey", 
-            primeMembership = True, 
-            id = 1)
+            url_for('delete', id=1)
         )
-        assert len(Memberships.query.all()) == 1
+        assert len(Memberships.query.all()) == 0
 
 # Also tried this method, did not work
 '''

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Customers</h1>
+<p>This is a list of current customers in our database.</p>
+<br>
+{% for membership in memberships %}
+<p>First name: {{ membership.firstName }} </p>
+<p>Last name: {{ membership.lastName }} </p>
+<p>Username: {{ membership.userName }} </p>
+<p>Prime Membership: {{ membership.primeMembership }}</p>
+<form action="{{ url_for('delete', id=membership.id) }}">
+<button type="Submit">Delete Customer</button>
+</form>
+<form action="{{ url_for('active', id=membership.id) }}">
+<button type="Submit">Active Customer</button>
+</form>
+<form action="{{ url_for('inactive', id=membership.id) }}">
+<button type="Submit">Inactive Customer</button>
+</form>
+<form action="{{ url_for('update', id=membership.id) }}">
+<button type="Submit">Update Customer</button>
+</form>
+{% endfor %}
+{% endblock body %}

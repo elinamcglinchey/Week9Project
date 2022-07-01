@@ -1,7 +1,22 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField
+from wtforms import StringField, BooleanField, SubmitField, IntegerField
 
-class Foodform(FlaskForm):
-    food = StringField("Task")
-    completed = BooleanField("Completed", default=False)
-    submit = SubmitField("Submit")
+class CustomerForm(FlaskForm):
+   customer = StringField("Customer")
+   firstName = StringField("First Name")
+   lastName = StringField("Last Name")
+   userName = StringField("Username")
+   password = StringField("Password")
+   primeMembership = BooleanField("Prime Membership")
+   submit= SubmitField("Submit")
+
+class MealsForm(FlaskForm):
+   recipeName = StringField("Recipe Name")
+   meat = BooleanField("Meat eater")
+   vegetarian = BooleanField("Vegetarian")
+   vegan = BooleanField("Vegan")
+   calories = IntegerField("Number of calories per meal")
+   nutAllergy = BooleanField("Nut allergies")
+   otherAllergy = StringField("Any other known allergies, if not please put N/A")
+   membership_id = IntegerField("Membership id")
+   submit= SubmitField("Submit")

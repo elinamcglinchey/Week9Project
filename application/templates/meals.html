@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Meals in your plan.</h1>
+<p>These are the current recipes in your mealplan, delete or update specifications if required.</p>
+<br>
+{% for meal in meals %}
+<p>Recipe Name: {{ meal.recipeName }} </p>
+<p>Meat: {{ meal.meat }}</p>
+<p>Vegetarian: {{ meal.vegetarian }}</p>
+<p>Vegan: {{ meal.vegan }}</p>
+<p>Calories: {{ meal.calories }}</p>
+<p>Nut Allergy: {{ meal.nutAllergy }}</p>
+<p>Other Allergy: {{ meal.otherAllergy }}</p>
+<form action="{{ url_for('deletemeal', id=meal.id) }}">
+<button type="Submit">Delete Recipe</button>
+</form>
+<form action="{{ url_for('active', id=meal.id) }}">
+<button type="Submit">Active Recipe</button>
+</form>
+<form action="{{ url_for('inactive', id=meal.id) }}">
+<button type="Submit">Inactive Recipe</button>
+</form>
+<form action="{{ url_for('updatemeal', id=meal.id) }}">
+<button type="Submit">Update Recipe</button>
+</form>
+{% endfor %}
+{% endblock body %}

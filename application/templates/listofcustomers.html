@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %} 
+<div class="ListofCustomers">
+{% for membership in Membership %}
+
+<div class="membership">
+<p> id: {{membership.id}} </p>
+<p class="title">
+    <a href="{{ url_for('customerindex', id = membership.id) }}">
+    Membership:{{ membership.username }}
+    </a>
+</p>
+</b>
+{% endfor %}
+</div>
+{% endblock body%}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+<head>
+    <title>Update your meals info</title>
+</head>
+{% block body %}
+
+<div class="form">
+
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        {{ form.recipeName.label }} {{ form.recipeName }}
+        <br>
+        {{ form.meat.label }} {{ form.meat }}
+        <br>
+        {{ form.vegetarian.label }} {{ form.vegetarian }}
+        <br>
+        {{ form.vegan.label }} {{ form.vegan }}
+        <br>
+        {{ form.calories.label }} {{ form.calories }}
+        <br>
+        {{ form.nutAllergy.label }} {{ form.nutAllergy }}
+        <br>
+        {{ form.otherAllergy.label }} {{ form.otherAllergy }}
+        <br>
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock body %}

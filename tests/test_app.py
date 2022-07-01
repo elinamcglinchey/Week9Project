@@ -30,7 +30,6 @@ class TestBase(TestCase):
         db.session.commit()
 
         sample_mealplan = MealPlans(recipeName = "Carbonara", meat = True, vegetarian = False, vegan = False, calories = 500, nutAllergy = True, otherAllergy = "N/A", membership_id = 1)
-        #problem with line above - error/invalid syntax
         db.session.add(sample_mealplan)
         db.session.commit()
 

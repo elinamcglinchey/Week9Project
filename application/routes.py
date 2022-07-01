@@ -87,7 +87,6 @@ def update(id):
             membership.firstName = form.firstName.data
             membership.lastName = form.lastName.data
             membership.userName = form.userName.data
-        # membership.customer = form.customer.data
         
         db.session.commit()
         return redirect(url_for('index'))
@@ -111,7 +110,7 @@ def updatemeal(id):
             meal.calories = form.calories.data
             meal.nutAllergy = form.nutAllergy.data
             meal.otherAllergy = form.otherAllergy.data
-            #meal.membership_id = form.membership_id.data
+           
         
         db.session.commit()
         return redirect(url_for('mealindex'))

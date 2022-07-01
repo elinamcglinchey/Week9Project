@@ -73,13 +73,13 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Add Meals', response.data)
 
-    # Not currently working due to assertion error, keeping in for progress update
+    
     def test_update_get(self):
         response = self.client.get(url_for('update', id=1))
         self.assertEqual(response.status_code, 200)
         #self.assertIn(b'Update Customer info', response.data)
 
-    # Not currently working due to assertion error, keeping in for progress update
+    
     def test_updatemeal_get(self):
         response = self.client.get(url_for('updatemeal', id=1))
         self.assertEqual(response.status_code, 200)
@@ -96,7 +96,7 @@ class TestDeleteCustomer(TestBase):
             lastName = "McGlinchey", 
             userName = "elinamcglinchey", 
             primeMembership = True, 
-            membership_id = 1)
+            id = 1)
         )
         assert len(Memberships.query.all()) == 1
 

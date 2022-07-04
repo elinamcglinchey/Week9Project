@@ -119,12 +119,6 @@ We use [Github](https://github.com) for versioning.
 
 **Elina McGlinchey** - [elinamcglinchey](https://github.com/elinamcglinchey)
 
-## License
-
-This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 
-
-*For help in [Choosing a license](https://choosealicense.com/)*
-
 ## Acknowledgments
 
 * QA Academy

@@ -113,7 +113,7 @@ class TestUpdate(TestBase):
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning.
+We use [Github](https://github.com) for versioning.
 
 ## Authors
 

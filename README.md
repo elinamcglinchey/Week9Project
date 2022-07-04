@@ -114,7 +114,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Elina McGlinchey** - [christophperrins](https://github.com/elinamcglinchey)
+**Elina McGlinchey** - [elinamcglinchey](https://github.com/elinamcglinchey)
 
 ## License
 

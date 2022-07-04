@@ -54,6 +54,8 @@ My application is here - http://35.246.105.40:5000/home
 
 Note: Switch off your VMs everday to avoid extra spending on credit!
 
+```
+
 ## Running the tests
 
 I have already provided tests that have 95% coverage in the test_app.py file, but on Jenkins the console output is also 95% after running the below commands in the execute shell - 
